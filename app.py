@@ -529,13 +529,11 @@ elif st.session_state.step == "result":
                     with c3: 
                         if st.button("🎡 놀거리 보기", key=f"b_pl_{i}"): 
                             # 🌟 로딩 애니메이션
-                            if lottie_search_anim:
-                                loading_ph = st.empty()
-                                with loading_ph.container():
-                                    st_lottie(lottie_search_anim, height=150, key=f"load_pl_{i}")
-                                time.sleep(1.0)
-                                loading_ph.empty()
-                            st.session_state[view_state_key]="detail_play"; st.rerun()
+                            # 🌟 [수정] 100% 작동하는 로딩바 코드
+                            with st.spinner("놀거리를 찾아오고 있어요... 슝슝 🚀"):
+                                time.sleep(1.0) # 1초 동안 로딩하는 척 보여줌
+                                st.session_state[view_state_key] = "detail_play"
+                                st.rerun()
                         plays = get_nearby_details(p_lat, p_lon, "AT4") + get_nearby_details(p_lat, p_lon, "CT1")
                         txt = ""
                         for x in plays[:5]:
