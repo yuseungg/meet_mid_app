@@ -378,9 +378,19 @@ elif st.session_state.step == "result":
                 if st.session_state.vibe == "📚 스터디/조용함":
                     details = [d for d in details if not ("보드" in d['place_name'] or "보드" in d['category_name'])]
 
-            # 🌟 [수정] 색상을 파란색(blue)으로 변경
+            # 🌟 [수정] 줄바꿈 & 새 창 열기 적용!
             kakao_map_search_url = f"https://map.kakao.com/link/search/{p['place_name']} {label}"
-            st.markdown(f"### 🗺️ {p['place_name']} 주변 {label} <a href='{kakao_map_search_url}' target='_blank' style='font-size:14px; color:blue; text-decoration:none;'>[ 카카오맵으로 보기 ]</a>", unsafe_allow_html=True)
+            
+            # 제목 출력
+            st.markdown(f"### 🗺️ {p['place_name']} 주변 {label}")
+            
+            # 링크 출력 (제목 아래에 별도로 위치시켜서 글자 짤림 방지)
+            st.markdown(f"""
+            <a href='{kakao_map_search_url}' target='_blank' 
+               style='display:block; margin-bottom:10px; font-size:15px; color:#3672e4; font-weight:bold; text-decoration:none;'>
+               🔗 카카오맵으로 크게 보기 (클릭)
+            </a>
+            """, unsafe_allow_html=True)
             
             m_det = folium.Map(location=[p_lat, p_lon], zoom_start=15, tiles="cartodbpositron")
             folium.Marker([p_lat, p_lon], icon=folium.Icon(color='red', icon='star')).add_to(m_det)
