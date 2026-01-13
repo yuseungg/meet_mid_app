@@ -1,5 +1,7 @@
 streamlit
 folium
 streamlit-folium
+streamlit-searchbox
 requests
-pandas
+beautifulsoup4
+streamlit-lottie
